@@ -5,8 +5,7 @@ import ProfileRight from '../Components/ProfileRight'
 
 function DeveloperScreen() {
     return (
-        <div style={{background: '#F8FAFD', paddingTop: 25}}>
-        <Container>
+        <div style={{background: '#F8FAFD', padding: '25px calc(50% - 700px)'}}>
             <Row>
                 <Col sm={12} xl={4}>
                     <ProfileLeft />
@@ -15,7 +14,6 @@ function DeveloperScreen() {
                     <ProfileRight />
                 </Col>
             </Row>
-        </Container>
         </div>
     )
 }
