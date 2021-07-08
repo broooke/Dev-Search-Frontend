@@ -7,7 +7,7 @@ function ProjectScreen() {
         <Container>
             <Row className='mt-5'>
                 <Col sm={12} md={8}>
-                    <Image src={'https://timeweb.com/ru/community/article/2e/2e3ad626c4c3b15bdb5d2146ed7d919b_thumb.jpg'} fluid />
+                    <Image style={{width:'100%'}} src={'https://timeweb.com/ru/community/article/2e/2e3ad626c4c3b15bdb5d2146ed7d919b_thumb.jpg'} fluid />
                     <p><b>Gaydenko Nikita</b></p>
                     <h1>Website</h1>
                     <h4>ABOUT THE PROJECT</h4>
@@ -19,6 +19,13 @@ function ProjectScreen() {
 
                 <Col sm={12} md={4}>
                     <h4>TOOLS & STACKS</h4>
+                    <Row className='mb-4'>
+                <div style={{background: '#EDEDFD', borderRadius: 25, padding: '5px 20px', marginRight: 10, width: 'auto'}}>Python</div>
+                <div style={{background: '#EDEDFD', borderRadius: 25, padding: '5px 20px', marginRight: 10, width: 'auto'}}>JS</div>
+                <div style={{background: '#EDEDFD', borderRadius: 25, padding: '5px 20px', marginRight: 10, width: 'auto'}}>HTML</div>
+                </Row>
+
+                    <a style={{padding: 10, borderBottom: '2px solid gray', color: 'gray'}}>Live Demo</a>
                 </Col>
             </Row>
         </Container>
