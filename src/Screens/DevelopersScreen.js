@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, FormControl, Button, Container, Row, Col } from 'react-bootstrap'
+import { Form, FormControl, Button, Container, Row, Col, InputGroup } from 'react-bootstrap'
 import Developers from '../Components/Developers'
 
 function DevelopersScreen() {
@@ -17,19 +17,26 @@ function DevelopersScreen() {
         <div>
             <div className='p-5' style={{backgroundColor: '#2D2D39', color: '#E5E7EB'}}>
                 <Container>
-                <h2 className="text-center mt-5">CONNECT WITH <b>DEVELOPERS</b> <br></br> FROM AROUND THE WORLD</h2>
+                    <h2 className="text-center mt-5">CONNECT WITH <b>DEVELOPERS</b> <br></br> FROM AROUND THE WORLD</h2>
+                    
+                    <Form>
+                        <Row>
+                            <InputGroup className='justify-content-center'>
+                                <FormControl
+                                size="lg"
+                                type="search"
+                                placeholder="Search"
+                                className="mr-4"
+                                style={{maxWidth: 400}}
+                                >
+                                </FormControl>
 
-                <div className="mb-5" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                    <Form className="d-flex">
-                        <FormControl
-                            size="lg"
-                            type="search"
-                            placeholder="Search"
-                            className="mr-4"
-                        />
-                        <Button variant="secondary">Search</Button>
+                                <Button variant='secondary'>
+                                    Search
+                                </Button>
+                            </InputGroup>
+                        </Row>
                     </Form>
-                </div>
                 </Container>
             </div>
             <div style={{background: '#F8FAFD'}}>

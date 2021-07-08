@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
-import Projects from '../Components/Projects'
+import Project from './Project'
 
 function ProfileRight() {
     const data = [
@@ -15,7 +15,7 @@ function ProfileRight() {
             <h3>About me</h3>
             <p>I build new projects just to tickle my brain and love teaching others how they're made. While I keep busy teaching courses, I still take interviews in search of a great team & projects that interest me.</p>
             <h3>SKILLS</h3>
-            <Row className='row'>
+            <Row>
                 <Col md={3}>
                     <b>React</b>
                 </Col>
@@ -23,7 +23,7 @@ function ProfileRight() {
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
                 </Col>
             </Row>
-            <Row className='row'>
+            <Row>
                 <Col md={3}>
                 <b>Django</b>
                 </Col>
@@ -38,7 +38,13 @@ function ProfileRight() {
                 <div style={{background: '#EDEDFD', borderRadius: 25, padding: '5px 20px', marginRight: 10}}>HTML</div>
             </div>
             <h3>PROJECTS</h3>
-            <Projects projects={data} />
+            <Row>
+                {data.map((project, index) => (
+                    <Col key={index} sm={12} md={6}>
+                        <Project />
+                    </Col>
+                ))}
+            </Row>
         </div>
     )
 }
