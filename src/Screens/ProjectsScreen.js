@@ -28,7 +28,7 @@ function ProjectsScreen() {
                                 >
                                 </FormControl>
 
-                                <Button variant='secondary'>
+                                <Button className='mx-3' variant='light'>
                                     Search
                                 </Button>
                             </InputGroup>

@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 
 function Project({project}) {
     return (
-        <LinkContainer to={`/project/${project?.title}`}>
+        <LinkContainer to={`/projects/${project?.title}`}>
         <Card className='mb-3'>
             <Card.Img variant="top" src="https://timeweb.com/ru/community/article/2e/2e3ad626c4c3b15bdb5d2146ed7d919b_thumb.jpg" />
             <Card.Body>

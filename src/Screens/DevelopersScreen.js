@@ -15,9 +15,9 @@ function DevelopersScreen() {
     ]
     return (
         <div>
-            <div className='p-5' style={{backgroundColor: '#2D2D39', color: '#E5E7EB'}}>
+            <div className='p-5' style={{backgroundColor: '#2D2D39'}}>
                 <Container>
-                    <h2 className="text-center mt-5">CONNECT WITH <b>DEVELOPERS</b> <br></br> FROM AROUND THE WORLD</h2>
+                    <h2 style={{color: '#E5E7EB'}} className="text-center mt-5">CONNECT WITH <b>DEVELOPERS</b> <br></br> FROM AROUND THE WORLD</h2>
                     
                     <Form>
                         <Row>
@@ -31,7 +31,7 @@ function DevelopersScreen() {
                                 >
                                 </FormControl>
 
-                                <Button variant='secondary'>
+                                <Button className='mx-3' variant='light'>
                                     Search
                                 </Button>
                             </InputGroup>

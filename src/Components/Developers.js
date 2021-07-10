@@ -9,7 +9,7 @@ function Developers({developers}) {
             <Row>
             {developers.map((developer, index) => (
                 <Col key={index} sm={12} md={6} xl={4}>
-                    <LinkContainer style={{borderRadius: 8, border: '2px solid #e5e7eb', background: '#fff', minHeight:'auto'}} to={`/profile/${developer.name}`}>
+                    <LinkContainer style={{borderRadius: 8, border: '2px solid #e5e7eb', background: '#fff', height:'auto'}} to={`/profile/${developer.name}`}>
                         <div className="my-3 p-3">
                             <div className='d-flex align-items-center'>
                                 <Image src={photo} fluid width='70px' height='70px' style={{borderRadius: '50%', border: '1px solid #5aa5b9'}} className='mr-2' />

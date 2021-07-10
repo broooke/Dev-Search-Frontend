@@ -7,7 +7,7 @@ function Header() {
         <div>
             <Navbar style={{background: '#2D2D39'}} variant="dark">
                 <Container>
-                    <Navbar.Brand href="/">Navbar</Navbar.Brand>
+                    <Navbar.Brand href="/">DevSearch</Navbar.Brand>
                     <Nav className="ml-auto">
                         <LinkContainer exact to={'/'}>
                             <Nav.Link>Developers</Nav.Link>
