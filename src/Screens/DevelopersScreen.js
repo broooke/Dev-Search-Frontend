@@ -1,46 +1,57 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Form, FormControl, Button, Container, Row, Col, InputGroup } from 'react-bootstrap'
 import Developers from '../Components/Developers'
+import { useDispatch, useSelector } from 'react-redux'
+import { developersListAction } from '../Actions/DevelopersAction'
+import { useHistory } from 'react-router-dom'
 
 function DevelopersScreen() {
-    const developersInfo = [
-        {'name': 'Gaydenko Nikita', 'subname': 'I am a fullstack Developer', 'description': 'I build new projects just to tickle my brain and love teaching others'},
-        {'name': 'Dennis Ivy', 'subname': 'Love teaching', 'description': 'I am popular yutuber in programming!'},
-        {'name': 'Gaydenko Nikita', 'subname': 'I am a fullstack Developer', 'description': 'I build new projects just to tickle my brain and love teaching others'},
-        {'name': 'Dennis Ivy', 'subname': 'Love teaching', 'description': 'I am popular yutuber in programming!'},
-        {'name': 'Gaydenko Nikita', 'subname': 'I am a fullstack Developer', 'description': 'I build new projects just to tickle my brain and love teaching others'},
-        {'name': 'Dennis Ivy', 'subname': 'Love teaching', 'description': 'I am popular yutuber in programming!'},
-        {'name': 'Gaydenko Nikita', 'subname': 'I am a fullstack Developer', 'description': 'I build new projects just to tickle my brain and love teaching others'},
-        {'name': 'Dennis Ivy', 'subname': 'Love teaching', 'description': 'I am popular yutuber in programming!'},
-    ]
+    const dispatch = useDispatch()
+    const [keyword, setKeyword] = useState('')
+    let history = useHistory()
+    let q = history.location.search 
+    const developersList = useSelector(state=>state.developersList)
+    const {error, developers, loading} = developersList
+
+    useEffect(() => {
+        dispatch(developersListAction(q))
+    },[dispatch, q])
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        if (keyword) {
+            history.push(`/?q=${keyword}`)
+        } else {
+            history.push(history.location.pathname)
+        }
+    }
     return (
         <div>
             <div className='p-5' style={{backgroundColor: '#2D2D39'}}>
                 <Container>
                     <h2 style={{color: '#E5E7EB'}} className="text-center mt-5">CONNECT WITH <b>DEVELOPERS</b> <br></br> FROM AROUND THE WORLD</h2>
                     
-                    <Form>
-                        <Row>
+                    <Form onSubmit={submitHandler} inline>
                             <InputGroup className='justify-content-center'>
                                 <FormControl
                                 size="lg"
                                 type="search"
                                 placeholder="Search"
-                                className="mr-4"
+                                value={keyword}
+                                onChange={(e)=>setKeyword(e.target.value)}
                                 style={{maxWidth: 400}}
                                 >
                                 </FormControl>
 
-                                <Button className='mx-3' variant='light'>
+                                <Button type="submit" className='mx-3' variant='light'>
                                     Search
                                 </Button>
                             </InputGroup>
-                        </Row>
                     </Form>
                 </Container>
             </div>
             <div style={{background: '#F8FAFD'}}>
-                <Developers developers={developersInfo} />
+                <Developers developers={developers} />
             </div>
         </div>
     )
