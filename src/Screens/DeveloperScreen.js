@@ -1,17 +1,27 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import ProfileLeft from '../Components/ProfileLeft'
 import ProfileRight from '../Components/ProfileRight'
+import { useDispatch, useSelector } from 'react-redux'
+import { developersDetailAction } from '../Actions/DevelopersAction'
 
-function DeveloperScreen() {
+function DeveloperScreen({match}) {
+    const dispatch = useDispatch()
+    const developerInfo = useSelector(state => state.developersDetail)
+    const {loading, error, developer} = developerInfo
+    console.log(developer)
+    useEffect(() => {
+        dispatch(developersDetailAction(match.params.name))
+    }, [dispatch, match])
+
     return (
         <Container style={{background: '#F8FAFD'}}>
-            <Row>
+            <Row className='mt-5'>
                 <Col sm={12} xl={4}>
-                    <ProfileLeft />
+                    {developer && <ProfileLeft developer={developer} />}
                 </Col>
                 <Col sm={12} xl={8}>
-                    <ProfileRight />
+                    {developer && <ProfileRight developer={developer} />}
                 </Col>
             </Row>
         </Container>
