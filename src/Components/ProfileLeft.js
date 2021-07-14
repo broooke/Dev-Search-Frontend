@@ -1,6 +1,6 @@
 import React from 'react'
 import photo from '../user-default.png'
-import { Image } from 'react-bootstrap'
+import { Image, Row } from 'react-bootstrap'
 
 function ProfileLeft({developer}) {
     return (
@@ -9,7 +9,13 @@ function ProfileLeft({developer}) {
             <h4><b>{developer.name}</b></h4>
             <p>{developer.short_intro}</p>
             <small>Based on {developer.location}</small>
-            <i className="bi bi-linkedin"></i>
+            <Row className='justify-content-center mt-2'>
+                {developer.social_linkedin && <a className='p-0 mx-1' href={developer.social_linkedin} style={{width: 'auto', color: '#5aa5b9'}}><i style={{fontSize: 30}} className="fab fa-linkedin"></i></a>}
+                {developer.social_github && <a className='p-0 mx-1' href={developer.social_github} style={{width: 'auto', color: '#5aa5b9'}}><i style={{fontSize: 30}} className="fab fa-github-square"></i></a>}
+                {developer.social_vk && <a className='p-0 mx-1' href={developer.social_vk} style={{width: 'auto', color: '#5aa5b9'}}><i style={{fontSize: 30}} className="fab fa-vk"></i></a>}
+                {developer.social_youtube && <a className='p-0 mx-1' href={developer.social_youtube} style={{width: 'auto', color: '#5aa5b9'}}><i style={{fontSize: 30}} className="fab fa-youtube-square"></i></a>}
+                {developer.social_website && <a className='p-0 mx-1' href={developer.social_website} style={{width: 'auto', color: '#5aa5b9'}}><i style={{fontSize: 30}} className="fas fa-globe"></i></a>}
+            </Row>
         </div>
     )
 }

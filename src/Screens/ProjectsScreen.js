@@ -1,47 +1,62 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Form, FormControl, Button, Container, Row, Col, InputGroup } from 'react-bootstrap'
 import Project from '../Components/Project'
+import { useDispatch, useSelector } from 'react-redux'
+import { projectsListAction } from '../Actions/ProjectsAction'
 
-function ProjectsScreen() {
-    const data = [
-        {'name': 'Magzine', 'user': 'Nikita'},
-        {'name': 'Magzine', 'user': 'Nikita'},
-        {'name': 'Magzine', 'user': 'Nikita'},
-        {'name': 'Magzine', 'user': 'Nikita'},
-        {'name': 'Magzine', 'user': 'Nikita'},
-    ]
+function ProjectsScreen({history}) {
+    const dispatch = useDispatch()
+    const [keyword, setKeyword] = useState('')
+    const q = history.location.search
+    const projectsList = useSelector(state => state.projectsList)
+    const {loading , error, projects} = projectsList
+    
+    useEffect(() => {
+        dispatch(projectsListAction(q))
+    }, [dispatch, q])
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        if (keyword) {
+            history.push(`/projects/?q=${keyword}`)
+        } else {
+            history.push(history.location.pathname)
+        }
+    }
+
     return (
         <div>
             <div className='p-5' style={{backgroundColor: '#ededfd', color: '#2d2d39'}}>
                 <Container>
                     <h2 className="text-center mt-5">SEARCH FOR <b>PROJECTS</b></h2>
                     
-                    <Form>
-                        <Row>
+                    <Form onSubmit={submitHandler} inline>
                             <InputGroup className='justify-content-center'>
                                 <FormControl
                                 size="lg"
                                 type="search"
                                 placeholder="Search"
                                 className="mr-4"
+                                value={keyword}
+                                onChange={(e) => setKeyword(e.target.value)}
                                 style={{maxWidth: 400}}
+                                required
                                 >
                                 </FormControl>
 
-                                <Button className='mx-3' variant='light'>
+                                <Button type='submit' className='mx-3' variant='light'>
                                     Search
                                 </Button>
                             </InputGroup>
-                        </Row>
                     </Form>
                 </Container>
             </div>
             <div style={{background: '#F8FAFD'}}>
                 <Container>
                     <Row className='mt-5'>
-                        {data.map((project, index) => (
+                        {projects.map((project, index) => (
                             <Col key={index} sm={12} md={6} xl={4}>
-                                <Project />
+                                {project && <Project project={project} />}
                             </Col>
                         ))}
                     </Row>

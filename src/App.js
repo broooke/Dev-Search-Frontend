@@ -12,6 +12,7 @@ import EditAccountScreen from './Screens/EditAccountScreen';
 import AddSkillScreen from './Screens/AddSkillScreen';
 import AddProjectScreen from './Screens/AddProjectScreen';
 import DeleteScreen from './Screens/DeleteScreen';
+import LoginScreen from './Screens/LoginScreen';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       <Route path="/account/edit" component={EditAccountScreen} exact />
       <Route path="/account/delete" component={DeleteScreen} exact />
       <Route path="/account" component={AccountScreen} exact />
+      <Route path="/login" component={LoginScreen} />
     </Router>
   );
 }

@@ -6,20 +6,18 @@ function Project({project}) {
     return (
         <LinkContainer to={`/projects/${project?.title}`}>
             <Card className='mb-3'>
-                <Card.Img variant="top" src="" />
+                <Card.Img variant="top" src={project.featured_image} />
                 <Card.Body>
-                    <Card.Title>Mumble Social Network</Card.Title>
+                    <Card.Title>{project.title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">By Gaiydenko Nikita</Card.Subtitle>
                     <Card.Text>
-                    <b>90%</b> Postitive Feedback (74 Votes)
+                    <b>90%</b> Postitive Feedback ({project.reviews.length} Votes)
                     </Card.Text>
                 </Card.Body>
-                <Row className='mx-2 mb-3' style={{margin: 0}}> 
-                    <span style={{color: '#5aa5b9', background: '#e6faff', borderRadius: 25, padding: '5px 10px', marginRight: 10, marginBottom: 5, fontSize: 14, width:'auto'}}>Python</span>
-                    <span style={{color: '#5aa5b9', background: '#e6faff', borderRadius: 25, padding: '5px 10px', marginRight: 10, marginBottom: 5, fontSize: 14, width:'auto'}}>Django</span>
-                    <span style={{color: '#5aa5b9', background: '#e6faff', borderRadius: 25, padding: '5px 10px', marginRight: 10, marginBottom: 5, fontSize: 14, width:'auto'}}>JavaScript</span>
-                    <span style={{color: '#5aa5b9', background: '#e6faff', borderRadius: 25, padding: '5px 10px', marginRight: 10, marginBottom: 5, fontSize: 14, width:'auto'}}>Django</span>
-                    <span style={{color: '#5aa5b9', background: '#e6faff', borderRadius: 25, padding: '5px 10px', marginRight: 10, marginBottom: 5, fontSize: 14, width:'auto'}}>JavaScript</span>
+                <Row className='mx-2 mb-3' style={{margin: 0}}>
+                    {project.tags.map((tag, index) => (
+                        <span key={index} style={{color: '#5aa5b9', background: '#e6faff', borderRadius: 25, padding: '5px 10px', marginRight: 10, marginBottom: 5, fontSize: 14, width:'auto'}}>{tag.name}</span>
+                    ))}
                 </Row>
             </Card>
         </LinkContainer>

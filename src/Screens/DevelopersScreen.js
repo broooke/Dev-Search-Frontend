@@ -40,6 +40,7 @@ function DevelopersScreen() {
                                 value={keyword}
                                 onChange={(e)=>setKeyword(e.target.value)}
                                 style={{maxWidth: 400}}
+                                required
                                 >
                                 </FormControl>
 

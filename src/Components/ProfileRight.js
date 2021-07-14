@@ -18,12 +18,12 @@ function ProfileRight({developer}) {
                     </Col>
                 </Row>
             ))}
-            <h3>OTHER SKILLS</h3>
+            {/* <h3>OTHER SKILLS</h3>
             <div className='d-flex'>
                 <div style={{background: '#EDEDFD', borderRadius: 25, padding: '5px 20px', marginRight: 10}}>Python</div>
                 <div style={{background: '#EDEDFD', borderRadius: 25, padding: '5px 20px', marginRight: 10}}>JS</div>
                 <div style={{background: '#EDEDFD', borderRadius: 25, padding: '5px 20px', marginRight: 10}}>HTML</div>
-            </div>
+            </div> */}
             <h3>PROJECTS</h3>
             <Row>
                 {developer.projects.map((project, index) => (
