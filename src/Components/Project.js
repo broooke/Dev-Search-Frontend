@@ -1,17 +1,17 @@
 import React from 'react'
-import { Row, Col, Card } from 'react-bootstrap'
+import { Row, Card } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 function Project({project}) {
     return (
         <LinkContainer to={`/projects/${project?.title}`}>
             <Card className='mb-3'>
-                <Card.Img variant="top" src={project.featured_image} />
+                <Card.Img variant="top" src={project.featured_image} style={{maxHeight: 230}} />
                 <Card.Body>
                     <Card.Title>{project.title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">By Gaiydenko Nikita</Card.Subtitle>
                     <Card.Text>
-                    <b>90%</b> Postitive Feedback ({project.reviews.length} Votes)
+                    <b>{project.vote_ratio}%</b> Postitive Feedback ({project.vote_total} Votes)
                     </Card.Text>
                 </Card.Body>
                 <Row className='mx-2 mb-3' style={{margin: 0}}>

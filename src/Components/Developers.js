@@ -1,6 +1,5 @@
 import React from 'react'
 import { Col, Image, Row, Container } from 'react-bootstrap'
-import photo from '../user-default.png'
 import { LinkContainer } from 'react-router-bootstrap';
 
 function Developers({developers}) {
@@ -19,7 +18,9 @@ function Developers({developers}) {
                                     <small style={{color: '#737373'}}><b>{developer.short_intro}</b></small>
                                 </p>
                             </div>
-                            <p style={{color: '#737373'}}>{developer.bio}</p>
+                            {developer?.bio?.length > 115 ? <p style={{color: '#737373'}}>{developer.bio.slice(0,115)}...</p>
+                                : <p style={{color: '#737373'}}>{developer.bio}</p>
+                            }
                             <div className='d-flex'>
                                 <Row style={{margin: 0}}> 
                                     {developer.skills.map((skill, index) => (

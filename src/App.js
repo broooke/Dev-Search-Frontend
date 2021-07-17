@@ -13,6 +13,7 @@ import AddSkillScreen from './Screens/AddSkillScreen';
 import AddProjectScreen from './Screens/AddProjectScreen';
 import DeleteScreen from './Screens/DeleteScreen';
 import LoginScreen from './Screens/LoginScreen';
+import RegisterScreen from './Screens/RegisterScreen';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       <Route path="/account/delete" component={DeleteScreen} exact />
       <Route path="/account" component={AccountScreen} exact />
       <Route path="/login" component={LoginScreen} />
+      <Route path="/register" component={RegisterScreen} />
     </Router>
   );
 }

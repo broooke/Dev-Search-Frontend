@@ -5,14 +5,16 @@ function AccountProject({data}) {
     return (
         <ListGroup variant="flush">
             {data.map((project, index) => (
-                <ListGroup.Item>
+                <ListGroup.Item key={index}>
                     <Row>
                         <Col xl={3}>
-                            <Image src="https://timeweb.com/ru/community/article/2e/2e3ad626c4c3b15bdb5d2146ed7d919b_thumb.jpg" fluid />
+                            <Image src={project.featured_image} fluid />
                         </Col>
                         <Col xl={7}>
-                            <b>Name Project</b>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500</p>
+                            <b>{project.title}</b>
+                            {project.description.length > 115 ? <p style={{color: '#737373'}}>{project.description.slice(0,115)}...</p>
+                                : <p style={{color: '#737373'}}>{project.description}</p>
+                            }
                         </Col>
                         <Col xl={2} className="d-flex flex-column">
                             <Button variant="outline-info" size="sm">Edit</Button>

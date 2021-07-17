@@ -1,5 +1,4 @@
 import React from 'react'
-import photo from '../user-default.png'
 import { Image, Row } from 'react-bootstrap'
 
 function ProfileLeft({developer}) {

@@ -9,7 +9,7 @@ function DeveloperScreen({match}) {
     const dispatch = useDispatch()
     const developerInfo = useSelector(state => state.developersDetail)
     const {loading, error, developer} = developerInfo
-    console.log(developer)
+    
     useEffect(() => {
         dispatch(developersDetailAction(match.params.name))
     }, [dispatch, match])

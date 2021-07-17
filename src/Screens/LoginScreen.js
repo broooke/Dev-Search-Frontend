@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import { Alert, Button, Container, Form, Image, Row } from 'react-bootstrap'
+import { Alert, Button, Container, Form, Row } from 'react-bootstrap'
 import { developerLoginAction } from '../Actions/DevelopersAction'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 function LoginScreen({history}) {
     const [username, setUsername] = useState('')
@@ -64,7 +65,7 @@ function LoginScreen({history}) {
                                 </Form>
                                 {error && <Alert variant="danger" className="my-2">{error}</Alert>}
                                 <p className="m-0 mt-4">Don’t have an Account?</p>
-                                <a href="/" style={{width: 'auto', padding: 0, color: '#5aa5b9', textDecoration: 'none', fontSize: 20}}><b>Sign Up</b></a>
+                                <Link to="/register" style={{width: 'auto', padding: 0, color: '#5aa5b9', textDecoration: 'none', fontSize: 20}}><b>Sign Up</b></Link>
                             </div>
                         )
                     }
