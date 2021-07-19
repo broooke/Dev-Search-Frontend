@@ -26,6 +26,18 @@ import {
     DEVELOPER_ADD_PROJECT_REQUEST,
     DEVELOPER_ADD_PROJECT_SUCCESS,
     DEVELOPER_ADD_PROJECT_FAIL,
+
+    DEVELOPER_EDIT_SKILL_REQUEST,
+    DEVELOPER_EDIT_SKILL_SUCCESS,
+    DEVELOPER_EDIT_SKILL_FAIL,
+
+    DEVELOPER_DELETE_SKILL_REQUEST,
+    DEVELOPER_DELETE_SKILL_SUCCESS,
+    DEVELOPER_DELETE_SKILL_FAIL,
+
+    DEVELOPER_DELETE_PROJECT_REQUEST,
+    DEVELOPER_DELETE_PROJECT_SUCCESS,
+    DEVELOPER_DELETE_PROJECT_FAIL,
 } from '../Constants/DevelopersConstants'
 import axios from 'axios'
 
@@ -198,6 +210,138 @@ export const developerAddSkillAction = (skill) => async (dispatch) => {
     }catch(error){
         dispatch({
             type: DEVELOPER_ADD_SKILL_FAIL,
+            payload: error.response && error.response.data.detail 
+                ? error.response.data.detail 
+                : error.message,
+        })
+    }
+}
+
+export const developerAddProjectAction = (project) => async (dispatch) => {
+    try{
+        dispatch({type: DEVELOPER_ADD_PROJECT_REQUEST})
+
+        const config = {
+            headers:{
+                'Content-type':'application/json'
+            }
+        }
+
+        const {data} = await axios.post('/developers/add/project/', project, config)
+
+        dispatch({
+            type: DEVELOPER_ADD_PROJECT_SUCCESS,
+            payload: data
+        })
+
+        dispatch({
+            type: DEVELOPER_LOGIN_SUCCESS,
+            payload: data
+        })
+
+        localStorage.setItem('userInfo', JSON.stringify(data))
+    }catch(error){
+        dispatch({
+            type: DEVELOPER_ADD_PROJECT_FAIL,
+            payload: error.response && error.response.data.detail 
+                ? error.response.data.detail 
+                : error.message,
+        })
+    }
+}
+
+export const developerEditSkillAction = (skill) => async (dispatch) => {
+    try{
+        dispatch({type: DEVELOPER_EDIT_SKILL_REQUEST})
+
+        const config = {
+            headers:{
+                'Content-type':'application/json'
+            }
+        }
+
+        const {data} = await axios.put('/developers/edit/skill/', skill, config)
+
+        dispatch({
+            type: DEVELOPER_EDIT_SKILL_SUCCESS,
+            payload: data
+        })
+
+        dispatch({
+            type: DEVELOPER_LOGIN_SUCCESS,
+            payload: data
+        })
+
+        localStorage.setItem('userInfo', JSON.stringify(data))
+    }catch(error){
+        dispatch({
+            type: DEVELOPER_EDIT_SKILL_FAIL,
+            payload: error.response && error.response.data.detail 
+                ? error.response.data.detail 
+                : error.message,
+        })
+    }
+}
+
+export const developerDeleteSkillAction = (skill) => async (dispatch) => {
+    try{
+        dispatch({type: DEVELOPER_DELETE_SKILL_REQUEST})
+
+        const config = {
+            headers:{
+                'Content-type':'application/json'
+            }
+        }
+
+        const {data} = await axios.post('/developers/delete/skill/', skill, config)
+
+        dispatch({
+            type: DEVELOPER_DELETE_SKILL_SUCCESS,
+            payload: data
+        })
+
+        dispatch({
+            type: DEVELOPER_LOGIN_SUCCESS,
+            payload: data
+        })
+
+        localStorage.setItem('userInfo', JSON.stringify(data))
+    }catch(error){
+        dispatch({
+            type: DEVELOPER_DELETE_SKILL_FAIL,
+            payload: error.response && error.response.data.detail 
+                ? error.response.data.detail 
+                : error.message,
+        })
+    }
+}
+
+export const developerDeleteProjectAction = (project) => async (dispatch) => {
+    try{
+        dispatch({type: DEVELOPER_DELETE_PROJECT_REQUEST})
+
+        const config = {
+            headers:{
+                'Content-type':'application/json'
+            }
+        }
+
+        const {data} = await axios.post('/developers/delete/project/', project, config)
+
+        dispatch({
+            type: DEVELOPER_DELETE_PROJECT_SUCCESS,
+            payload: data
+        })
+
+        dispatch({
+            type: DEVELOPER_LOGIN_SUCCESS,
+            payload: data
+        })
+
+        localStorage.setItem('userInfo', JSON.stringify(data))
+    }catch(error){
+        dispatch({
+            type: DEVELOPER_DELETE_PROJECT_FAIL,
             payload: error.response && error.response.data.detail 
                 ? error.response.data.detail 
                 : error.message,

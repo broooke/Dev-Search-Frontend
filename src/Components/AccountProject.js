@@ -1,5 +1,6 @@
 import React from 'react'
 import { ListGroup, Row, Col, Image, Button } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
 function AccountProject({data}) {
     return (
@@ -19,7 +20,12 @@ function AccountProject({data}) {
                         <Col xl={2} className="d-flex flex-column">
                             <Button variant="outline-info" size="sm">Edit</Button>
                             <br></br>
-                            <Button variant="outline-info" size="sm">Delete</Button>
+                            <LinkContainer to={{
+                                    pathname: '/account/delete',
+                                    state: { detail: project, type: 'project'}
+                                }}>
+                                <Button variant="outline-danger" size="sm">Delete</Button>
+                            </LinkContainer>
                         </Col>
                     </Row>
                 </ListGroup.Item>

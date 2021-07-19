@@ -10,6 +10,10 @@ import {
     ADD_REVIEW_REQUEST,
     ADD_REVIEW_SUCCESS,
     ADD_REVIEW_FAIL,
+
+    TAGS_REQUEST,
+    TAGS_SUCCESS,
+    TAGS_FAIL,
 } from '../Constants/ProjectsConstants'
 
 export const projectsListReducer = (state={projects:[]}, action) => {
@@ -46,6 +50,19 @@ export const addReviewReducer = (state={}, action) => {
             return {loading: false, success: true}
         case ADD_REVIEW_FAIL:
             return {loading: false, success: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const getTagsReducer = (state={}, action) => {
+    switch (action.type) {
+        case TAGS_REQUEST:
+            return {loading: true}
+        case TAGS_SUCCESS:
+            return {loading: false, tags: action.payload}
+        case TAGS_FAIL:
+            return {loading: false, error: action.payload}
         default:
             return state
     }

@@ -23,9 +23,19 @@ function AccountRight({userInfo}) {
                                 <p>{skill.description}</p>
                             </Col>
                             <Col xl={2} className="d-flex flex-column">
-                                <Button variant="outline-info" size="sm">Edit</Button>
+                                <LinkContainer to={{
+                                    pathname: '/account/edit/skill',
+                                    state: { detail: skill }
+                                }}>
+                                    <Button variant="outline-info" size="sm">Edit</Button>
+                                </LinkContainer>
                                 <br></br>
-                                <Button variant="outline-info" size="sm">Delete</Button>
+                                <LinkContainer to={{
+                                    pathname: '/account/delete',
+                                    state: { detail: skill, type: 'skill'}
+                                }}>
+                                    <Button variant="outline-danger" size="sm">Delete</Button>
+                                </LinkContainer>
                             </Col>
                         </Row>
                     </ListGroup.Item>

@@ -10,6 +10,10 @@ import {
     ADD_REVIEW_REQUEST,
     ADD_REVIEW_SUCCESS,
     ADD_REVIEW_FAIL,
+
+    TAGS_REQUEST,
+    TAGS_SUCCESS,
+    TAGS_FAIL,
 } from '../Constants/ProjectsConstants'
 import axios from 'axios'
 
@@ -66,6 +70,27 @@ export const addReviewAction = (review) => async (dispatch) => {
     }catch(error){
         dispatch({
             type: ADD_REVIEW_FAIL,
+            payload: error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+        })
+    }
+}
+
+export const tagsListAction = () => async (dispatch) => {
+    try{
+        dispatch({type: TAGS_REQUEST})
+
+        const {data} = await axios.get('/projects/tags/')
+
+        dispatch({
+            type: TAGS_SUCCESS,
+            payload: data
+        })
+        
+    }catch(error){
+        dispatch({
+            type: TAGS_FAIL,
             payload: error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,

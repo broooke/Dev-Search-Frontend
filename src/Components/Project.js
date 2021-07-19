@@ -9,7 +9,7 @@ function Project({project}) {
                 <Card.Img variant="top" src={project.featured_image} style={{maxHeight: 230}} />
                 <Card.Body>
                     <Card.Title>{project.title}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">By Gaiydenko Nikita</Card.Subtitle>
+                    <Card.Subtitle className="mb-2 text-muted">By {project.owner.name}</Card.Subtitle>
                     <Card.Text>
                     <b>{project.vote_ratio}%</b> Postitive Feedback ({project.vote_total} Votes)
                     </Card.Text>

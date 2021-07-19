@@ -26,6 +26,18 @@ import {
     DEVELOPER_ADD_PROJECT_REQUEST,
     DEVELOPER_ADD_PROJECT_SUCCESS,
     DEVELOPER_ADD_PROJECT_FAIL,
+
+    DEVELOPER_EDIT_SKILL_REQUEST,
+    DEVELOPER_EDIT_SKILL_SUCCESS,
+    DEVELOPER_EDIT_SKILL_FAIL,
+
+    DEVELOPER_DELETE_SKILL_REQUEST,
+    DEVELOPER_DELETE_SKILL_SUCCESS,
+    DEVELOPER_DELETE_SKILL_FAIL,
+
+    DEVELOPER_DELETE_PROJECT_REQUEST,
+    DEVELOPER_DELETE_PROJECT_SUCCESS,
+    DEVELOPER_DELETE_PROJECT_FAIL,
 } from '../Constants/DevelopersConstants'
 
 export const developersListReducer = (state={developers:[]}, action) => {
@@ -114,6 +126,45 @@ export const developerAddProjectReducer = (state={}, action) => {
             return {loading: false, success: true}
         case DEVELOPER_ADD_PROJECT_FAIL:
             return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const developerEditSkillReducer = (state={}, action) => {
+    switch (action.type) {
+        case DEVELOPER_EDIT_SKILL_REQUEST:
+            return {loading: true}
+        case DEVELOPER_EDIT_SKILL_SUCCESS:
+            return {loading: false, success: true}
+        case DEVELOPER_EDIT_SKILL_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const developerDeleteSkillReducer = (state={}, action) => {
+    switch (action.type) {
+        case DEVELOPER_DELETE_SKILL_REQUEST:
+            return {loading: true}
+        case DEVELOPER_DELETE_SKILL_SUCCESS:
+            return {loading: false, success: true}
+        case DEVELOPER_DELETE_SKILL_FAIL:
+            return {loading: false, success: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const developerDeleteProjectReducer = (state={}, action) => {
+    switch (action.type) {
+        case DEVELOPER_DELETE_PROJECT_REQUEST:
+            return {loading: true}
+        case DEVELOPER_DELETE_PROJECT_SUCCESS:
+            return {loading: false, success: true}
+        case DEVELOPER_DELETE_PROJECT_FAIL:
+            return {loading: false, success: false, error: action.payload}
         default:
             return state
     }
