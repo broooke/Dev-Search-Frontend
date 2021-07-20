@@ -9,6 +9,8 @@ function DeveloperScreen({match}) {
     const dispatch = useDispatch()
     const developerInfo = useSelector(state => state.developersDetail)
     const {loading, error, developer} = developerInfo
+    const accountInfo  =useSelector(state => state.userLogin)
+    const {userInfo} = accountInfo
     
     useEffect(() => {
         dispatch(developersDetailAction(match.params.name))
@@ -18,7 +20,7 @@ function DeveloperScreen({match}) {
         <Container style={{background: '#F8FAFD'}}>
             <Row className='mt-5'>
                 <Col sm={12} xl={4}>
-                    {developer && <ProfileLeft developer={developer} />}
+                    {developer && <ProfileLeft user={userInfo} developer={developer} />}
                 </Col>
                 <Col sm={12} xl={8}>
                     {developer && <ProfileRight developer={developer} />}

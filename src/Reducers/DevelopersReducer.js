@@ -38,6 +38,24 @@ import {
     DEVELOPER_DELETE_PROJECT_REQUEST,
     DEVELOPER_DELETE_PROJECT_SUCCESS,
     DEVELOPER_DELETE_PROJECT_FAIL,
+
+    DEVELOPER_EDIT_PROJECT_REQUEST,
+    DEVELOPER_EDIT_PROJECT_SUCCESS,
+    DEVELOPER_EDIT_PROJECT_FAIL,
+
+    DEVELOPER_LOGOUT,
+
+    DEVELOPER_MESSAGES_REQUEST,
+    DEVELOPER_MESSAGES_SUCCESS,
+    DEVELOPER_MESSAGES_FAIL,
+
+    DEVELOPER_MESSAGE_REQUEST,
+    DEVELOPER_MESSAGE_SUCCESS,
+    DEVELOPER_MESSAGE_FAIL,
+
+    SEND_MESSAGE_REQUEST,
+    SEND_MESSAGE_SUCCESS,
+    SEND_MESSAGE_FAIL,
 } from '../Constants/DevelopersConstants'
 
 export const developersListReducer = (state={developers:[]}, action) => {
@@ -74,6 +92,8 @@ export const developLoginReducer = (state={}, action) => {
             return {loading: false, userInfo: action.payload}
         case DEVELOPER_LOGIN_FAIL:
             return {loading: false, error: action.payload}
+        case DEVELOPER_LOGOUT:
+            return {}
         default:
             return state
     }
@@ -165,6 +185,58 @@ export const developerDeleteProjectReducer = (state={}, action) => {
             return {loading: false, success: true}
         case DEVELOPER_DELETE_PROJECT_FAIL:
             return {loading: false, success: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const developerEditProjectReducer = (state={}, action) => {
+    switch (action.type) {
+        case DEVELOPER_EDIT_PROJECT_REQUEST:
+            return {loading: true}
+        case DEVELOPER_EDIT_PROJECT_SUCCESS:
+            return {loading: false, success: true}
+        case DEVELOPER_EDIT_PROJECT_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const developerMessagesReducer = (state={}, action) => {
+    switch (action.type) {
+        case DEVELOPER_MESSAGES_REQUEST:
+            return {loading: true}
+        case DEVELOPER_MESSAGES_SUCCESS:
+            return {loading: false, messages: action.payload}
+        case DEVELOPER_MESSAGES_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const developerMessageReducer = (state={}, action) => {
+    switch (action.type) {
+        case DEVELOPER_MESSAGE_REQUEST:
+            return {loading: true}
+        case DEVELOPER_MESSAGE_SUCCESS:
+            return {loading: false, message: action.payload}
+        case DEVELOPER_MESSAGE_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const sendMessageReducer = (state={}, action) => {
+    switch (action.type) {
+        case SEND_MESSAGE_REQUEST:
+            return {loading: true}
+        case SEND_MESSAGE_SUCCESS:
+            return {loading: false, success: true}
+        case SEND_MESSAGE_FAIL:
+            return {loading: false, error: action.payload}
         default:
             return state
     }

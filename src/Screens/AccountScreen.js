@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import AccountLeft from '../Components/AccountLeft'
 import AccountRight from '../Components/AccountRight'
 import { useSelector } from 'react-redux'
 
-function AccountScreen() {
+function AccountScreen({history}) {
     const accountInfo = useSelector(state => state.userLogin)
     const {userInfo} = accountInfo
+
+    useEffect(() => {
+        if (!userInfo) {
+            history.push('/login')
+        }
+    }, [userInfo, history])
 
     return (
         <Container className='mt-4' style={{background: '#F8FAFD'}}>

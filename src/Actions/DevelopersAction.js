@@ -11,6 +11,8 @@ import {
     DEVELOPER_LOGIN_SUCCESS,
     DEVELOPER_LOGIN_FAIL,
 
+    DEVELOPER_LOGOUT,
+
     DEVELOPER_REGISTER_REQUEST,
     DEVELOPER_REGISTER_SUCCESS,
     DEVELOPER_REGISTER_FAIL,
@@ -38,6 +40,22 @@ import {
     DEVELOPER_DELETE_PROJECT_REQUEST,
     DEVELOPER_DELETE_PROJECT_SUCCESS,
     DEVELOPER_DELETE_PROJECT_FAIL,
+
+    DEVELOPER_EDIT_PROJECT_REQUEST,
+    DEVELOPER_EDIT_PROJECT_SUCCESS,
+    DEVELOPER_EDIT_PROJECT_FAIL,
+
+    DEVELOPER_MESSAGES_REQUEST,
+    DEVELOPER_MESSAGES_SUCCESS,
+    DEVELOPER_MESSAGES_FAIL,
+
+    DEVELOPER_MESSAGE_REQUEST,
+    DEVELOPER_MESSAGE_SUCCESS,
+    DEVELOPER_MESSAGE_FAIL,
+
+    SEND_MESSAGE_REQUEST,
+    SEND_MESSAGE_SUCCESS,
+    SEND_MESSAGE_FAIL,
 } from '../Constants/DevelopersConstants'
 import axios from 'axios'
 
@@ -342,6 +360,119 @@ export const developerDeleteProjectAction = (project) => async (dispatch) => {
     }catch(error){
         dispatch({
             type: DEVELOPER_DELETE_PROJECT_FAIL,
+            payload: error.response && error.response.data.detail 
+                ? error.response.data.detail 
+                : error.message,
+        })
+    }
+}
+
+export const developerEditProjectAction = (project) => async (dispatch) => {
+    try{
+        dispatch({type: DEVELOPER_EDIT_PROJECT_REQUEST})
+
+        const config = {
+            headers:{
+                'Content-type':'application/json'
+            }
+        }
+
+        const {data} = await axios.put('/developers/edit/project/', project, config)
+
+        dispatch({
+            type: DEVELOPER_EDIT_PROJECT_SUCCESS,
+            payload: data
+        })
+
+        dispatch({
+            type: DEVELOPER_LOGIN_SUCCESS,
+            payload: data
+        })
+
+        localStorage.setItem('userInfo', JSON.stringify(data))
+    }catch(error){
+        dispatch({
+            type: DEVELOPER_EDIT_PROJECT_FAIL,
+            payload: error.response && error.response.data.detail 
+                ? error.response.data.detail 
+                : error.message,
+        })
+    }
+}
+
+export const logout = () => (dispatch) => {
+    localStorage.removeItem('userInfo')
+    dispatch({type: DEVELOPER_LOGOUT})
+}
+
+export const developerMessagesAction = (id) => async (dispatch) => {
+    try{
+        dispatch({type: DEVELOPER_MESSAGES_REQUEST})
+
+        const config = {
+            headers:{
+                'Content-type':'application/json'
+            }
+        }
+
+        const {data} = await axios.post('/developers/messages/', {'id': id}, config)
+
+        dispatch({
+            type: DEVELOPER_MESSAGES_SUCCESS,
+            payload: data
+        })
+
+    }catch(error){
+        dispatch({
+            type: DEVELOPER_MESSAGES_FAIL,
+            payload: error.response && error.response.data.detail 
+                ? error.response.data.detail 
+                : error.message,
+        })
+    }
+}
+
+export const developerMessageAction = (id) => async (dispatch) => {
+    try{
+        dispatch({type: DEVELOPER_MESSAGE_REQUEST})
+
+        const {data} = await axios.get(`/developers/messages/${id}/`)
+
+        dispatch({
+            type: DEVELOPER_MESSAGE_SUCCESS,
+            payload: data
+        })
+
+    }catch(error){
+        dispatch({
+            type: DEVELOPER_MESSAGE_FAIL,
+            payload: error.response && error.response.data.detail 
+                ? error.response.data.detail 
+                : error.message,
+        })
+    }
+}
+
+export const sendMessageAction = (message) => async (dispatch) => {
+    try{
+        dispatch({type: SEND_MESSAGE_REQUEST})
+
+        const config = {
+            headers:{
+                'Content-type':'application/json'
+            }
+        }
+
+        const {data} = await axios.post(`/developers/message/send/`, message, config)
+
+        dispatch({
+            type: SEND_MESSAGE_SUCCESS,
+            payload: data
+        })
+        
+    }catch(error){
+        dispatch({
+            type: SEND_MESSAGE_FAIL,
             payload: error.response && error.response.data.detail 
                 ? error.response.data.detail 
                 : error.message,

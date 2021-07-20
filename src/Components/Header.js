@@ -1,11 +1,18 @@
 import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../Actions/DevelopersAction'
 
 function Header() {
     const userInfoLogin = useSelector(state => state.userLogin)
     const {userInfo} = userInfoLogin
+    const dispatch = useDispatch()
+
+    const logoutClick = () => {
+        dispatch(logout())
+    }
+    
     return (
         <div>
             <Navbar style={{background: '#2D2D39'}} variant="dark">
@@ -27,9 +34,7 @@ function Header() {
                                     <LinkContainer exact to={'/messages'}>
                                         <Nav.Link>Inbox</Nav.Link>
                                     </LinkContainer>
-                                    <LinkContainer exact to={'/'}>
-                                        <Nav.Link>Logout</Nav.Link>
-                                    </LinkContainer>
+                                    <Nav.Link onClick={logoutClick}>Logout</Nav.Link>
                                 </>
                             )
                             :

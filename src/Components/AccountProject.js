@@ -5,7 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 function AccountProject({data}) {
     return (
         <ListGroup variant="flush">
-            {data.map((project, index) => (
+            {data?.map((project, index) => (
                 <ListGroup.Item key={index}>
                     <Row>
                         <Col xl={3}>
@@ -18,7 +18,12 @@ function AccountProject({data}) {
                             }
                         </Col>
                         <Col xl={2} className="d-flex flex-column">
-                            <Button variant="outline-info" size="sm">Edit</Button>
+                            <LinkContainer to={{
+                                pathname: '/account/edit/project',
+                                state: { detail: project}
+                            }}>
+                                <Button variant="outline-info" size="sm">Edit</Button>
+                            </LinkContainer>
                             <br></br>
                             <LinkContainer to={{
                                     pathname: '/account/delete',

@@ -15,6 +15,9 @@ import DeleteScreen from './Screens/DeleteScreen';
 import LoginScreen from './Screens/LoginScreen';
 import RegisterScreen from './Screens/RegisterScreen';
 import EditSkillScreen from './Screens/EditSkillScreen';
+import EditProjectScreen from './Screens/EditProjectScreen';
+import MessageScreen from './Screens/MessageScreen';
+import SendMessageScreen from './Screens/SendMessageScreen';
 
 
 function App() {
@@ -25,10 +28,13 @@ function App() {
       <Route path="/profile/:name" component={DeveloperScreen} />
       <Route path="/projects/:name" component={ProjectScreen} exact />
       <Route path="/projects" component={ProjectsScreen} exact />
-      <Route path="/messages" component={MessagesScreen} />
+      <Route path="/message/send" component={SendMessageScreen} exact />
+      <Route path="/messages/:id" component={MessageScreen} exact />
+      <Route path="/messages" component={MessagesScreen} exact />
       <Route path="/account/add/skill" component={AddSkillScreen} exact />
       <Route path="/account/edit/skill" component={EditSkillScreen} exact />
       <Route path="/account/add/project" component={AddProjectScreen} exact />
+      <Route path="/account/edit/project" component={EditProjectScreen} exact />
       <Route path="/account/edit" component={EditAccountScreen} exact />
       <Route path="/account/delete" component={DeleteScreen} exact />
       <Route path="/account" component={AccountScreen} exact />

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Image, Row } from 'react-bootstrap'
+import { Button, Image, Row } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
-function ProfileLeft({developer}) {
+function ProfileLeft({developer, user}) {
     return (
         <div style={{border: '2px solid #e5e7eb', borderRadius: 8, textAlign: 'center', padding: 45, background: '#fff'}}>
             <Image src={developer.profile_image} fluid height='200px' width='200px' style={{borderRadius: '50%', border: '1px solid #5aa5b9'}} />
@@ -15,6 +16,10 @@ function ProfileLeft({developer}) {
                 {developer.social_youtube && <a className='p-0 mx-1' href={developer.social_youtube} style={{width: 'auto', color: '#5aa5b9'}}><i style={{fontSize: 30}} className="fab fa-youtube-square"></i></a>}
                 {developer.social_website && <a className='p-0 mx-1' href={developer.social_website} style={{width: 'auto', color: '#5aa5b9'}}><i style={{fontSize: 30}} className="fas fa-globe"></i></a>}
             </Row>
+            {user?.id !== developer.id && user
+                ? 
+                <LinkContainer to={{pathname: '/message/send', state: {detail: developer}}}><Button className='mt-2' variant='info'>Send Message</Button></LinkContainer> 
+                    : null}
         </div>
     )
 }

@@ -13,6 +13,10 @@ import {
     developerEditSkillReducer,
     developerDeleteSkillReducer,
     developerDeleteProjectReducer,
+    developerEditProjectReducer,
+    developerMessagesReducer,
+    developerMessageReducer,
+    sendMessageReducer,
 } from './Reducers/DevelopersReducer'
 import { projectsListReducer, projectDetailsReducer, addReviewReducer, getTagsReducer } from './Reducers/ProjectsReducer'
 
@@ -33,6 +37,10 @@ const reducer = combineReducers({
     editSkill: developerEditSkillReducer,
     deleteSkill: developerDeleteSkillReducer,
     deleteProject: developerDeleteProjectReducer,
+    editProject: developerEditProjectReducer,
+    messagesList: developerMessagesReducer,
+    messageDetails: developerMessageReducer,
+    sendMessage: sendMessageReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?
